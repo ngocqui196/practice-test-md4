@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Update Customer</h1>
+<p><a href="/products">Comback list customer</a></p>
+
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<!--<form th:action="@{/edit/__${customer.getId()}__}" th:object="${customer}" method="post">-->
+<form th:action="@{/products/edit}" th:object="${product}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <table>
+
+        <tr>
+            <td> Name </td>
+            <td><input type="text" th:field="*{name}"></td>
+<!--            <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></td>-->
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td><input type="text" th:field="*{description}"></td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td><input type="number" th:field="*{price}"></td>
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td><input type="date" th:field="*{date}"></td>
+        </tr>
+        <tr>
+            <td>Quantity</td>
+            <td><input type="text" th:field="*{quantity}"></td>
+        </tr>
+
+        <tr>
+            <td>Choise Category</td>
+            <td>
+                <select th:field="*{category}">
+                    <th:block th:each="ca : ${categories}">
+                        <option th:value="${ca.id}" th:text="${ca.name}"></option>
+                    </th:block>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <input type="Submit" value="Update">
+</form>
+</body>
+</html>

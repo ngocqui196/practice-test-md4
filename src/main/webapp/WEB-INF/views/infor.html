@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List TOp 5 Price Greatest Of Products </title>
+</head>
+<body>
+
+
+
+<a href="/products/create" style="color: chartreuse">Create Product. Click in here</a>
+
+<table border="1" style="color: red">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Date</th>
+        <th>Quantity</th>
+        <th>Category</th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    <th:block th:each="product : ${products}">
+        <tr>
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.description}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.date}"></td>
+            <td th:text="${product.quantity}"></td>
+            <td th:text="${product.getCategory().name}"></td>
+            <td><a th:href="@{/products/edit/__${product.getId()}__}">Edit</a></td>
+            <td><a th:href="@{/products/delete/__${product.getId()}__}">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+
+<form method="post" th:action="@{/products/search}" th:object="${category}">
+    <select th:name="id">
+<!--        Là cái thằng th:name="id" chết tiệt này làm tôi phải xoắn não không biết lỗi do đâu-->
+<!--        <th:block>-->
+            <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
+<!--        </th:block>-->
+    </select>
+
+    <input type="submit" value="Search">
+    <br>
+</form>
+<!--<form th:action="@{/products/search}" method="post" >-->
+<!--<div>-->
+<!--    <label>Category</label>-->
+<!--    <select th:name="category" th:id="category">-->
+<!--        <th:block th:each="c: ${categories}">-->
+<!--            <option th:value="${c.id}" th:text="${c.name}"></option>-->
+<!--        </th:block>-->
+<!--    </select>-->
+<!--</div>-->
+<!--<input type="submit" value="Search">-->
+<!--</form>-->
+</body>
+</html>
