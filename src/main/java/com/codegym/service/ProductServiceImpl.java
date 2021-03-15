@@ -54,4 +54,9 @@ public class ProductServiceImpl implements IProductService{
     public List<Product> findAllProductByCategory(Category category) {
         return repositoryProduct.findAllByCategory(category);
     }
+
+    @Override
+    public Long findSumAllProducts() {
+        return repositoryProduct.findSumAllProducts();
+    }
 }

@@ -7,6 +7,8 @@ import com.codegym.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +40,7 @@ public class ProductController {
     public ModelAndView showListProducts() {
 
         ModelAndView modelAndView = new ModelAndView("/infor");
+        modelAndView.addObject("sum",productService.findSumAllProducts());
         modelAndView.addObject("products",productService.findAll());
         return modelAndView;
     }
@@ -103,7 +106,6 @@ public class ProductController {
 
     @GetMapping("/topproductslastest")
     public ModelAndView showformDate() {
-
         ModelAndView modelAndView = new ModelAndView("/toplastest");
         modelAndView.addObject("top",productService.findTopByLastest());
         return modelAndView;

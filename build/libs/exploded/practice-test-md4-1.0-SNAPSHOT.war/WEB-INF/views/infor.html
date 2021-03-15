@@ -6,7 +6,17 @@
 </head>
 <body>
 
+<form method="post" th:action="@{/products/search}" th:object="${category}">
+    <select th:name="id">
+        <!--        Là cái thằng th:name="id" chết tiệt này làm tôi phải xoắn não không biết lỗi do đâu-->
+        <!--        <th:block>-->
+        <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
+        <!--        </th:block>-->
+    </select>
 
+    <input type="submit" value="Search">
+    <br>
+</form>
 
 <a href="/products/create" style="color: chartreuse">Create Product. Click in here</a>
 
@@ -37,17 +47,9 @@
         </tr>
     </th:block>
 </table>
-
-<form method="post" th:action="@{/products/search}" th:object="${category}">
-    <select th:name="id">
-<!--        <th:block>-->
-            <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
-<!--        </th:block>-->
-    </select>
-
-    <input type="submit" value="Search">
-    <br>
-</form>
+<br>
+<label for="sum">Tổng vốn tất cả các sản phẩm :</label>
+<input type="text" th:value="${sum}" id="sum">
 <!--<form th:action="@{/products/search}" method="post" >-->
 <!--<div>-->
 <!--    <label>Category</label>-->
@@ -59,5 +61,6 @@
 <!--</div>-->
 <!--<input type="submit" value="Search">-->
 <!--</form>-->
+
 </body>
 </html>

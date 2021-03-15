@@ -11,4 +11,5 @@ public interface IProductService extends IService<Product>{
     List<Product> findTopByPriceIsGreaterThan();
     List<Product> findTopByLastest();
     List<Product> findAllProductByCategory(Category category);
+    Long findSumAllProducts();
 }

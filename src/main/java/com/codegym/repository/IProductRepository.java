@@ -16,4 +16,6 @@ public interface IProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "select * from products order by date desc limit 5",nativeQuery = true)
     List<Product> findTopByLastest();
     List<Product> findAllByCategory(Category category);
+    @Query(value = "select sum(price * quantity) from products",nativeQuery = true)
+    Long findSumAllProducts();
 }
